@@ -1,4 +1,4 @@
-const { BASE_URL } = require('../utils/config');
+const { REACT_APP_BASE_URL } = require('../utils/config');
 
 class Api {
   constructor(apiConfig){
@@ -138,7 +138,7 @@ _answerHandle(serverAnswer){
 }
 
 export const api = new Api({
-  initUrlApi: BASE_URL,
+  initUrlApi: REACT_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
   }
