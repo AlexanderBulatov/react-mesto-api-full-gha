@@ -1,4 +1,4 @@
-const { BASE_URL = 'http://localhost:3000' } = process.env;
+const { REACT_APP_BASE_URL = 'http://localhost:3000' } = process.env.REACT_APP_BASE_URL;
 module.exports = {
-  BASE_URL
+  REACT_APP_BASE_URL
 }

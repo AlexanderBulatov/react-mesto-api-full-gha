@@ -26,9 +26,6 @@ import { FormValidator } from '../utils/FormValidator.js';
 import { api } from '../utils/Api.js'
 import * as auth from '../utils/auth.js';
 
-require('dotenv').config();
-
-
 function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);

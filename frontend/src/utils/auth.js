@@ -1,5 +1,4 @@
-
-const { BASE_URL } = require('../utils/config');
+const { REACT_APP_BASE_URL } = require('../utils/config');
 
 function answerHandle(serverAnswer){
   if (serverAnswer.ok) {
@@ -10,7 +9,7 @@ function answerHandle(serverAnswer){
 }
 
 export const register = (password, email) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${REACT_APP_BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -24,7 +23,7 @@ export const register = (password, email) => {
 }
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`,
+  return fetch(`${REACT_APP_BASE_URL}/signin`,
     {
       credentials: 'include',
       method: 'POST',
@@ -39,7 +38,7 @@ export const authorize = (email, password) => {
 }; 
 
 export const signOut = () => {
-  return fetch(`${BASE_URL}/signout`,
+  return fetch(`${REACT_APP_BASE_URL}/signout`,
     {
       credentials: 'include',
       method: 'GET',
@@ -53,7 +52,7 @@ export const signOut = () => {
 }; 
 
 export const checkToken = () => {
-  return fetch(`${BASE_URL}/users/me`, 
+  return fetch(`${REACT_APP_BASE_URL}/users/me`, 
   {
     credentials: 'include',
     method: 'GET',
