@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const { JWT_SECRET } = require('../utils/config');
+
 const UnauthError = require('../errors/unauth-err');
 
 module.exports = (req, res, next) => {
@@ -12,7 +14,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(jwtMesto, 'some-secret-key');
+    payload = jwt.verify(jwtMesto, JWT_SECRET);
   } catch (err) {
     return next(new UnauthError('Ошибка авторизации. Авторизуйтесь', 'Auth error', 'access denied'));
   }
