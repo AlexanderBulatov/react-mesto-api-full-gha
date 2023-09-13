@@ -39,13 +39,11 @@ module.exports.deleteCard = (req, res, next) => {
       }
 
       return Card.deleteOne({ _id: req.params.cardId })
-        .then((resObj) => ({ resObj, card }))
-        .catch(next);
-    })
-    .then(({ resObj, card }) => {
-      if (!resObj.deletedCount) return Promise.reject(new Error('Bad delete'));
-      res.status(HTTP_STATUS_OK).send({ data: card });
-      return null;
+        .then((resObj) => {
+          if (!resObj.deletedCount) return Promise.reject(new Error('Bad delete'));
+          res.status(HTTP_STATUS_OK).send({ data: card });
+          return null;
+        });
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
@@ -62,7 +60,7 @@ module.exports.likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $addToSet: { likes: req.user._id } },
-    { new: true, runValidators: true },
+    { new: true },
   )
     .orFail()
     .then((card) => {
@@ -83,7 +81,7 @@ module.exports.dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
-    { new: true, runValidators: true },
+    { new: true },
   )
     .orFail()
     .then((card) => res.status(HTTP_STATUS_OK).send({ data: card }))

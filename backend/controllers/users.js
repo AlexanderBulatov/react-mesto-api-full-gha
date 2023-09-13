@@ -75,9 +75,6 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
         return next(new NotFoundError('Пользователь с переданным _id не существует.', err.name, err.message));
       }
-      if (err instanceof mongoose.Error.CastError) {
-        return next(new BadReqError('Некорректный формат _id.', err.name, err.message));
-      }
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new BadReqError('Переданы некорректные данные.', err.name, err.message));
       }
@@ -92,6 +89,9 @@ module.exports.updateUserAvatar = (req, res, next) => {
     .orFail()
     .then((user) => res.status(HTTP_STATUS_OK).send({ data: user }))
     .catch((err) => {
+      if (err instanceof mongoose.Error.DocumentNotFoundError) {
+        return next(new NotFoundError('Пользователь с переданным _id не существует.', err.name, err.message));
+      }
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new BadReqError('Переданы некорректные данные.', err.name, err.message));
       }

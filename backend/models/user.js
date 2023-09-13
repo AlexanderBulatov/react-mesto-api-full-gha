@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         const urlRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=[\]]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=[\]]*)$/;
         return urlRegex.test(v);
       },
-      message: (props) => `${props.value}  - не верный формат ссылки!`,
+      message: (props) => `${props.value} - не верный формат ссылки!`,
     },
   },
   email: {
@@ -47,8 +47,7 @@ const userSchema = new mongoose.Schema({
   },
 }, { versionKey: false });
 
-// eslint-disable-next-line func-names
-userSchema.statics.findUserByCredentials = function (email, password) {
+userSchema.statics.findUserByCredentials = function findUser(email, password) {
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
