@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.2.206
+IP 51.250.2.206
 
 Frontend https://frontend-project.ab.nomoredomainsicu.ru
 
